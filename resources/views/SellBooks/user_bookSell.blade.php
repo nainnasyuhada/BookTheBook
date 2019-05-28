@@ -7,7 +7,7 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-ticket"> My Books</i>
+                    <!-- <i class="fa fa-ticket"> My Books</i> -->
                 </div>
 
                 <div class="panel-body">
@@ -18,16 +18,16 @@
                             <thead>
                                 <tr>
                                     <th>Book ID </th>
-                                    <th>Category</th>
-                                    <th>Subject</th>
+                                    <!-- <th>Category</th> -->
+                                    <!-- <th>Subject</th> -->
                                     <th>Title</th>
                                     <th>Author</th>
                                     <th>Publisher</th>
-                                    <th>Published Year</th>
+                                    <!-- <th>Published Year</th> -->
                                     <th>ISBN</th>
                                     <th>Price</th>
                                     <th>Status</th>
-                                    <th>Last Updated</th>
+                                    <!-- <th>Last Updated</th> -->
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -35,11 +35,11 @@
                             @foreach ($book_sells as $book)
                                 <tr>
                                     <td>
-                                    <a href="{{ url('bookSell/'. $book->bookSell_id) }}">
+                                    <!-- <a href="{{ url('bookSell/'. $book->bookSell_id) }}"> -->
                                             #{{ $book->bookSell_id }}
-                                        </a>
+                                        <!-- </a> -->
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                     @foreach ($book_categories as $category)
                                         @if ($category->id === $book->category_id)
                                             {{ $category->category }}
@@ -52,7 +52,7 @@
                                             {{ $subject->subject }}
                                         @endif
                                     @endforeach
-                                    </td>
+                                    </td> -->
                                     <td>
                                         {{ $book->title }}
                                     </td>
@@ -62,9 +62,9 @@
                                     <td>
                                         {{ $book->publisher }}
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                         {{ $book->year }}
-                                    </td>
+                                    </td> -->
                                     <td>
                                         {{ $book->isbn }}
                                     </td>
@@ -72,13 +72,16 @@
                                         {{ $book->price }}
                                     </td>
                                     <td>
-                                    @if ($book->status === "Posted")
-                                        <span class="label label-success">{{ $book->status }}</span>
+                                    @if ($book->OrderStatus->status === "Posted")
+                                        <span class="label label-success">{{ $book->OrderStatus->status }}</span>
                                     @else
-                                        <span class="label label-danger">{{ $book->status }}</span>
+                                        <span class="label label-danger">{{ $book->OrderStatus->status }}</span>
                                     @endif
                                     </td>
-                                    <td>{{ $book->updated_at }}</td>
+                                    <!-- <td>{{ $book->updated_at }}</td> -->
+                                    <td>       
+                                    <button type="submit" class="btn btn-primary" onclick="window.location = ' {{ url('bookSell/'. $book->bookSell_id) }}'">View</button>
+                                    <!-- <a href="{{ url('bookSell/'. $book->bookSell_id) }}"></td> -->
                                 </tr>
                             @endforeach
                             </tbody>

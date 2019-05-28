@@ -6,12 +6,12 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Book Details</div>
+                <!-- <div class="panel-heading">Book Details</div> -->
 
                 <div class="panel-body">
                     @include('includes.flash')
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/new_bookSell') }}">
+                    <form class="form-horizontal" role="form" method="POST" enctype = "multipart/form-data" action="{{ url('/new_bookSell') }}">
                         {!! csrf_field() !!}
 
                         <!-- Book Category -->
@@ -129,21 +129,6 @@
                             </div>
                         </div>
 
-                        <!-- Book Cover Page Link -->
-                        <div class="form-group{{ $errors->has('coverPage') ? ' has-error' : '' }}">
-                            <label for="coverPage" class="col-md-4 control-label">Cover Page URL</label>
-
-                            <div class="col-md-6">
-                                <input id="coverPage" type="text" class="form-control" name="coverPage" value="{{ old('coverPage') }}">
-
-                                @if ($errors->has('coverPage'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('coverPage') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <!-- Book Selling Price -->
                         <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
                             <label for="price" class="col-md-4 control-label">Selling Price (RM)</label>
@@ -159,10 +144,25 @@
                             </div>
                         </div>
 
+                         <!-- Book Cover Page -->
+                         <div class="form-group{{ $errors->has('coverPage') ? ' has-error' : '' }}">
+                            <label for="coverPage" class="col-md-4 control-label">Book Photo</label>
+
+                            <div class="col-md-6">
+                            <input id = "coverPage" type="file" name="coverPage" value="{{ old('coverPage') }}">
+                            @if ($errors->has('coverPage'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('coverPage') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            
+                            <br><br>
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-ticket"></i> SELL BOOK
+                                <button type="submit" class="btn btn-success">
+                                     SELL BOOK
                                 </button>
                             </div>
                         </div>

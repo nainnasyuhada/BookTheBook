@@ -31,3 +31,30 @@ Route::get('my_bookSell', 'BookSellsController@userBookSell');
 
 // user to be able to access a particular book 
 Route::get('bookSell/{bookSell_id}', 'BookSellsController@show');
+
+// // user to be able edit a particular book
+// Route::get('bookSell/{bookSell_id}', 'BookSellsController@edit');
+
+// // user to be able edit a particular book
+// Route::any('bookSell/{bookSell}', 'BookSellsController@update');
+
+// user to be able to delete a particular book
+Route::any('bookSell/{bookSell}', 'BookSellsController@destroy');
+
+// user to be able to delete a particular book frombuyer view
+Route::get('bookSell/{bookSell_id}', 'BookBuyController@show');
+
+// display all the books posted by all user
+Route::get('all_bookSell', 'BookBuyController@allBookSell');
+
+// display profile user
+Route::get('profile/{user_id}', 'UserProfileController@showProfile');
+
+// display order page
+Route::get('order_book/{user_id}','BookOrdersController@orderBuku');
+
+// buyer place order
+Route::post('/order/{bid}','BookOrdersController@newOrder');
+
+// approve
+Route::get('/approve/{oid}','BookOrdersController@approveOrder');

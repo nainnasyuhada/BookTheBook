@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 // Adding User class
 use App\User;
 
@@ -54,7 +55,7 @@ class BookSellsController extends Controller
                 'publisher'  => 'required',
                 'year'  => 'required',
                 'isbn'  => 'required',
-                'coverPage'  => 'required',
+                'coverPage'  => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'price'  => 'required',
             ]);
 
@@ -67,17 +68,34 @@ class BookSellsController extends Controller
                 'publisher'   => $request->input('publisher'),
                 'year'   => $request->input('year'),
                 'isbn'   => $request->input('isbn'),
-                'coverPage'   => $request->input('coverPage'),
+                // 'coverPage'   => $request->file('coverPage'), 
                 'price'   => $request->input('price'),
                 'bookSell_id' => strtoupper(str_random(10)),
                 'status_id'    => 1,
+
+                
         ]);
+
+        if ($request->hasfile('coverPage')) {
+            $file = $request->file('coverPage');
+            $extension = $file->getClientOriginalExtension(); // getting coverPage extension
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/appsetting/', $filename);
+            $bookSell->coverPage = $filename;
+        } 
+        
+        else {
+            return $request;
+            $bookSell->coverPage = '';
+        }
 
             $bookSell->save();
 
             // $mailer->sendBookInformation(Auth::user(), $bookSell);
 
-            return redirect()->back()->with("status_id", "You book (#$bookSell->bookSell_id) is posted to be sold.");
+            // return redirect()->back()->with("status_id", "You book (#$bookSell->bookSell_id) is posted to be sold.");
+            return $this->userBookSell();
+
     }
 
 
@@ -94,15 +112,20 @@ class BookSellsController extends Controller
 
     // Users to be able to acces a particular book posted
     public function show($bookSell_id)
-{
-    $bookSell = BookSell::where('bookSell_id', $bookSell_id)->firstOrFail();
-
-    $category = $bookSell->category;
-    $subject = $bookSell->subject;
-    $status = $bookSell->status;
+    {
+        $bookSell = BookSell::where('bookSell_id', $bookSell_id)->firstOrFail();
+        $category = $bookSell->category;
+        $subject = $bookSell->subject;
+        $status = $bookSell->status;
 
     return view('SellBooks.show', compact('bookSell', 'category', 'subject', 'status'));
-}
+    }
 
+    // Users to be able delete book  
+    public function destroy(BookSell $bookSell) {
+        $bookSell->delete();
+        // $request->session()->flash('message', 'Successfully deleted the book!');
+        return $this->userBookSell()->with('success', 'Successfully deleted the book!');
+    }
 
 }

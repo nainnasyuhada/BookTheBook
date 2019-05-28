@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\BookOrder;
+
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $book_sells = BookOrder::where('user_id', Auth::user()->id)->where('status_id', 2)->get();
+
+        return view('home', compact('book_sells') );
     }
 }

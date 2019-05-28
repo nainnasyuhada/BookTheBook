@@ -22,3 +22,6 @@ Route::get('my_bookSell', 'BookSellsController@userBookSell');
 
 // user to be able to access a particular book 
 Route::get('bookSell/{bookSell_id}', 'BookSellsController@show');
+
+// user to be able to delete a particular book
+Route::get('bookSell/destroy', 'BookSellsController@destroy');

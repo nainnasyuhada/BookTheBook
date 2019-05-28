@@ -14,25 +14,25 @@ class BookSell extends Model
     // Creating relationship - BookSell belongs to a User
     public function User()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     // Creating relationship - BookSell belongs to a BookCategories
     public function bookCategories()
     {
-        return $this->belongsTo(BookCategories::class);
+        return $this->belongsTo(BookCategories::class, 'category_id');
     }
 
     // Creating relationship - BookSell belongs to a BookSubjects
     public function bookSubjects()
     {
-        return $this->belongsTo(BookSubjects::class);
+        return $this->belongsTo(BookSubjects::class, 'subject_id');
     }
 
     // Creating relationship - BookSell belongs to a OrderStatus
     public function orderStatus()
     {
-        return $this->belongsTo(OrderStatus::class);
+        return $this->belongsTo(OrderStatus::class, 'status_id');
     }
 
     

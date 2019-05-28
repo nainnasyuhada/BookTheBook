@@ -54,7 +54,14 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
+
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <!-- buy book link -->
+                                    <a class="dropdown-item " href="{{ url('all_bookSell') }}" style="text-decoration:none">Order Book</a>
+                                    
+                                    <!-- sell book link -->                                    
+                                    <a class="dropdown-item " href="{{ url('/home') }}" style="text-decoration:none">Sell Book</a>
+                                    
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

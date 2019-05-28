@@ -1,0 +1,56 @@
+.button_a {
+    padding:4px 10px !important;
+    width:80px !important;
+    font-size:1.1em !important;    
+}
+
+.button_a:hover{
+    color:white;
+}
+
+.mybutton {
+    display: inline-block;
+    border-radius: 4px;  
+    border: 2px solid teal;
+    background-color: #fff;
+    color: teal;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .mybutton:hover{
+    background-color: teal;
+    color:white;
+    border: none;
+    text-decoration: none;
+  }
+  
+  .mybutton span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .mybutton span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;    
+  }
+  
+  .mybutton:hover span {
+    padding-right: 25px;
+  }
+  
+  .mybutton:hover span:after {
+    opacity: 1;
+    right: 0;
+  }

@@ -12,8 +12,11 @@
         <!-- Styles -->
         <style>
             html, body {
+                background: url("{{asset('/img/home.png')}}");
+                background-repeat: no-repeat;
+                background-size: cover;
                 background-color: #fff;
-                color: #636b6f;
+                color: #fff;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
@@ -46,13 +49,15 @@
 
             .title {
                 font-size: 84px;
+                font-weight: bold;
+                background-color: rgba(0,0,0,0.3);
             }
 
             .links > a {
-                color: #636b6f;
+                color: #000;
                 padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
+                font-size: 24px;
+                font-weight: bold;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
@@ -79,13 +84,13 @@
                 </div>
             @endif
 
-            <div class="content">
+            <!-- <div class="content">
                 <div class="title m-b-md">
                     BookTheBook!
                 </div>
                 <h1>
                 IIUM Community Used Books Selling & Buying Platforms
-                </h1>
+                </h1> -->
 
 
                 <div class="links">
